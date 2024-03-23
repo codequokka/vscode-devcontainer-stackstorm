@@ -1,0 +1,90 @@
+{
+	"name": "vscode-devcontainer-stackstorm",
+	"dockerComposeFile": "../st2-docker/docker-compose.yml",
+	"service": "st2client",
+	"workspaceFolder": "/opt/stackstorm",
+	"features": {
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+			"version": "latest",
+			"enableNonRootDocker": "false",
+			"moby": "false"
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"settings": {
+				// Editor
+				"editor.renderWhitespace": "all",
+				"editor.formatOnSave": true,
+				// Remote
+				"remote.autoForwardPorts": false,
+				// Python
+				"python.defaultInterpreterPath": ".venv/bin/python",
+				"python.languageServer": "Pylance",
+				"python.analysis.diagnosticMode": "workspace",
+				"python.analysis.typeCheckingMode": "strict",
+				"python.analysis.completeFunctionParens": true,
+				"python.analysis.autoImportCompletions": true,
+				"python.testing.pytestArgs": [
+					"tests",
+					"--capture=tee-sys",
+					"-vv"
+				],
+				"python.testing.pytestEnabled": true,
+				"[python]": {
+					"editor.tabSize": 4,
+					"editor.defaultFormatter": "charliermarsh.ruff",
+					// "editor.defaultFormatter": "ms-python.black-formatter",
+					"editor.codeActionsOnSave": {
+						"source.fixAll": "explicit",
+						"source.organizeImports": "explicit"
+					}
+				},
+				"coverage-gutters.showLineCoverage": true,
+				"coverage-gutters.showRulerCoverage": true,
+				"coverage-gutters.coverageFileNames": [
+					".pytest_cache/coverage.xml"
+				],
+				// Json
+				"[json][jsonc]": {
+					"editor.defaultFormatter": "esbenp.prettier-vscode",
+					"editor.codeActionsOnSave": {
+						"source.fixAll": "explicit"
+					}
+				}
+			},
+			"extensions": [
+				"esbenp.prettier-vscode",
+				"ms-python.python",
+				// "ms-python.black-formatter",
+				"ms-python.mypy-type-checker",
+				"njpwerner.autodocstring",
+				"charliermarsh.ruff",
+				"ryanluker.vscode-coverage-gutters"
+			]
+		}
+	}
+}
+// {
+// 	"name": "vscode-devcontainer-stackstorm",
+// 	"dockerComposeFile": "../st2-docker/docker-compose.yml",
+// 	"service": "st2client",
+// 	"workspaceFolder": "/opt/stackstorm",
+// 	"features": {
+// 		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+// 			"version": "latest",
+// 			"enableNonRootDocker": "false",
+// 			"moby": "false"
+// 		}
+// 	}
+// 	// Use this environment variable if you need to bind mount your local source code into a new container.
+// 	// "remoteEnv": {
+// 	// 	"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+// 	// },
+// 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+// 	// "forwardPorts": [],
+// 	// Use 'postCreateCommand' to run commands after the container is created.
+// 	// "postCreateCommand": "docker --version",
+// 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+// 	// "remoteUser": "root"
+// }
